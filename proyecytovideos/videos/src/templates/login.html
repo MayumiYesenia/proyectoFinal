@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" name="correo" placeholder="Correo" required>
+                <input type="password" id="loginPassword" name="password" placeholder="Contraseña" required>
+                <button type="submit">Login</button>
+                <div id="loginMessage"></div>
+            </form>
+            <p><a href="/register">¿No tienes una cuenta? Regístrate</a></p>
+        </div>
+    </div>
+    <script>
+    $('#loginForm').submit(function(event) {
+        event.preventDefault();
+        const email = $('#loginEmail').val();
+        const password = $('#loginPassword').val();
+        
+        // Obtener el user_id almacenado
+        const user_id = localStorage.getItem('user_id');
+
+        // Verificar si el user_id está disponible
+        if (!user_id) {
+            $('#loginMessage').text('Error: user_id no encontrado').css('color', 'red');
+            return;
+        }
+
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ correo: email, password: password, user_id: user_id }),
+            success: function(data) {
+                $('#loginMessage').text(data.message).css('color', 'green');
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    // Redirigir a la página de videos con el token
+                    window.location.href = '/videos?token=' + data.token;
+                }
+            },
+            error: function(jqXHR) {
+                $('#loginMessage').text(jqXHR.responseJSON.message).css('color', 'red');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

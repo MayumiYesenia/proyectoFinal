@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="videos-container">
+        {% for video in videos %}
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <a href="{{ url_for('video_detail', video_id=video.video_id, token=token) }}">
+                        <img src="{{ video.image }}" alt="{{ video.nombre }}">
+                    </a>
+                </div>
+                <div class="video-info">
+                    <h2>{{ video.nombre }}</h2>
+                    <p>{{ video.video_categoria }}</p>
+                    <button class="btn-add-favorite" onclick="addToFavorites('{{ video.video_id }}')">Añadir a Favoritos</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        function addToFavorites(videoId) {
+            const token = '{{ token }}';
+            const user_id = localStorage.getItem('user_id');  // Obtener el user_id de localStorage
+            const url = '/video/add_to_favorites?token=' + token;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: user_id, video_id: videoId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al añadir a favoritos');
+            });
+        }
+    </script>
+</body>
+</html>

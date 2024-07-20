@@ -1,0 +1,202 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000033; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    font-family: Arial, sans-serif;
+    background-image: url('../static/log.jpg');
+    background-size: cover; /* Asegura que la imagen de fondo cubra toda el área visible */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    padding: 20px;
+}
+
+/* Estilos del formulario */
+.form-container {
+    background-image: url('../static/log.jpg');
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px; /* Ancho fijo para el contenedor del formulario */
+    text-align: center; /* Centrar el contenido del formulario */
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center; /* Centra el texto del título */
+    font-size: 24px; /* Tamaño del texto del título */
+}
+
+input[type="email"], input[type="password"], button {
+    width: 100%; /* Asegura que todos los elementos tengan el mismo ancho */
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+input[type="email"], input[type="password"] {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo ligeramente transparente para los campos de entrada */
+    color: #ffffff; /* Texto blanco */
+}
+
+button {
+    background-color: #ff0000; /* Fondo rojo para el botón */
+    color: #ffffff; /* Texto blanco */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #cc0000; /* Cambio de color al pasar el cursor */
+}
+
+#registerMessage, #loginMessage {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+p a {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Otros estilos (video, tarjetas, etc.) */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #0e0e52; /* Fondo azul oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.video-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+video {
+    width: 100%;
+    max-width: 800px;
+    border: 2px solid #ffffff; /* Borde blanco alrededor del video */
+    border-radius: 10px;
+}
+
+/* Oculta el botón de añadir a favoritos en el contenedor del video */
+.video-container .btn-add-favorite {
+    display: none;
+}
+
+.favorite-button {
+    margin-top: 20px;
+    background-color: #ff0000; /* Fondo rojo para el botón */
+    background-image: url('../static/log.jpg');
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.favorite-button i {
+    margin-right: 10px;
+}
+
+#favoriteMessage {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.anime-text {
+    margin-top: 20px;
+    background-color: #0e0e52; /* Fondo azul oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    text-align: center;
+}
+
+.videos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center; /* Centra las tarjetas horizontalmente */
+}
+
+.video-card {
+    background-color: #0e0e52; /* Fondo azul oscuro para las tarjetas */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    border: 2px solid #ffffff; /* Borde blanco alrededor de las tarjetas */
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    border-bottom: 2px solid #ffffff; /* Línea blanca debajo de la imagen */
+}
+
+.video-info {
+    padding: 10px;
+}
+
+.video-info h2 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.video-info p {
+    margin: 5px 0 10px 0;
+    font-size: 14px;
+}
+
+.btn-add-favorite {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff0000; /* Fondo rojo para el botón */
+    color: #ffffff;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-add-favorite:hover {
+    background-color: #cc0000; /* Cambio de color al pasar el cursor */
+}
+
+.video-container .btn-add-favorite {
+    display: none;
+}

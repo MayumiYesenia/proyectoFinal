@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Registro</h1>
+            <form id="registerForm">
+                <input type="email" id="registerEmail" name="correo" placeholder="Correo" required>
+                <input type="password" id="registerPassword" name="password" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+                <div id="registerMessage"></div>
+            </form>
+            <p><a href="/login">Ya tienes una cuenta? Inicia sesión</a></p>
+        </div>
+    </div>
+    <script>
+    $('#registerForm').submit(function(event) {
+        event.preventDefault();
+        const email = $('#registerEmail').val();
+        const password = $('#registerPassword').val();
+
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ correo: email, password: password }),
+            success: function(data) {
+                $('#registerMessage').text(data.message).css('color', 'green');
+                if (data.user_id) {
+                    localStorage.setItem('user_id', data.user_id);  // Almacenar user_id
+                }
+            },
+            error: function(jqXHR) {
+                $('#registerMessage').text(jqXHR.responseJSON.message).css('color', 'red');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
